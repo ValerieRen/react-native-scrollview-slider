@@ -120,7 +120,15 @@ Slider.defaultProps = {
 };
 
 Slider.propTypes = {
-  dataSource: PropTypes.array.isRequired,
+  dataSource: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      caption: PropTypes.string,
+      imgUrl: PropTypes.string.isRequired,
+      titleOverImg: PropTypes.string,
+      textListOverImg: PropTypes.array,
+    }),
+  ).isRequired,
   imgWidth: PropTypes.number,
   imgHeight: PropTypes.number,
   indicatorColor: PropTypes.string,
