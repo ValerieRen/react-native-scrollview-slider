@@ -16,12 +16,10 @@ export default StyleSheet.create({
     padding: 5,
     color: 'white',
     backgroundColor: 'black',
-    borderRadius: 30,
   },
   text: {
     padding: 5,
     color: 'white',
     backgroundColor: 'black',
-    borderRadius: 30,
   },
 });

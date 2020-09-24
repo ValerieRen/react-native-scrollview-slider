@@ -5,6 +5,7 @@ import TextOverImage from '../textOverImage/TextOverImage';
 import Title from '../title/Title';
 import Indicator from '../indicator/Indicator';
 const {width, height} = Dimensions.get('window');
+import PropTypes from 'prop-types';
 
 const Slider = ({
   dataSource,
@@ -28,8 +29,8 @@ const Slider = ({
   const [active, setActive] = useState(0);
 
   const sizeProps = {
-    width: imgWidth || width * 0.7,
-    height: imgHeight || height * 0.6,
+    width: imgWidth,
+    height: imgHeight,
   };
 
   const onChangeScroll = ({nativeEvent}) => {
@@ -51,29 +52,30 @@ const Slider = ({
         scrollEventThrottle={0}
         showsHorizontalScrollIndicator={false}
         style={sizeProps}>
-        {dataSource.map((source, index) => (
-          <View key={index}>
-            <Title
-              title={source.title}
-              caption={source.caption}
-              titleTextStyle={titleTextStyle}
-              titleContainerStyle={titleContainerStyle}
-              captionTextStyle={captionTextStyle}
-              captionContainerStyle={captionContainerStyle}
-            />
-            <Image
-              style={[sizeProps, setImageStyle(sizeProps.height)]}
-              source={{uri: source.imgUrl}}
-            />
-            <TextOverImage
-              title={source.titleOverImg}
-              text={source.textListOverImg}
-              textOverImageContainerStyle={textOverImageContainerStyle}
-              textOverImageTitleStyle={textOverImageTitleStyle}
-              textOverImageTextStyle={textOverImageTextStyle}
-            />
-          </View>
-        ))}
+        {dataSource.length > 0 &&
+          dataSource.map((source, index) => (
+            <View key={index}>
+              <Title
+                title={source.title}
+                caption={source.caption}
+                titleTextStyle={titleTextStyle}
+                titleContainerStyle={titleContainerStyle}
+                captionTextStyle={captionTextStyle}
+                captionContainerStyle={captionContainerStyle}
+              />
+              <Image
+                style={[sizeProps, setImageStyle(sizeProps.height)]}
+                source={{uri: source.imgUrl}}
+              />
+              <TextOverImage
+                title={source.titleOverImg}
+                text={source.textListOverImg}
+                textOverImageContainerStyle={textOverImageContainerStyle}
+                textOverImageTitleStyle={textOverImageTitleStyle}
+                textOverImageTextStyle={textOverImageTextStyle}
+              />
+            </View>
+          ))}
       </ScrollView>
       {/* SECTION INDICATOR */}
       <Indicator
@@ -92,10 +94,48 @@ const Slider = ({
 
 const setImageStyle = (sizeHeight) => {
   return {
-    height: sizeHeight * 0.85,
+    height: sizeHeight * 0.75,
     borderRadius: 20,
     resizeMode: 'cover',
   };
+};
+
+Slider.defaultProps = {
+  dataSource: [],
+  imgWidth: width * 0.7,
+  imgHeight: height * 0.6,
+  indicatorColor: '',
+  selectedIndicatorColor: '',
+  indicatorContainerStyle: {},
+  indicatorStyle: {},
+  indicatorSelectedStyle: {},
+  textOverImageContainerStyle: {},
+  textOverImageTitleStyle: {},
+  textOverImageTextStyle: {},
+  titleTextStyle: {},
+  titleContainerStyle: {},
+  captionTextStyle: {},
+  captionContainerStyle: {},
+  imgContainerStyle: {},
+};
+
+Slider.propTypes = {
+  dataSource: PropTypes.array.isRequired,
+  imgWidth: PropTypes.number,
+  imgHeight: PropTypes.number,
+  indicatorColor: PropTypes.string,
+  selectedIndicatorColor: PropTypes.string,
+  indicatorContainerStyle: PropTypes.object,
+  indicatorStyle: PropTypes.object,
+  indicatorSelectedStyle: PropTypes.object,
+  textOverImageContainerStyle: PropTypes.object,
+  textOverImageTitleStyle: PropTypes.object,
+  textOverImageTextStyle: PropTypes.object,
+  titleTextStyle: PropTypes.object,
+  titleContainerStyle: PropTypes.object,
+  captionTextStyle: PropTypes.object,
+  captionContainerStyle: PropTypes.object,
+  imgContainerStyle: PropTypes.object,
 };
 
 export default Slider;

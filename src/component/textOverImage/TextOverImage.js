@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const TextOverImage = ({
   title,
@@ -23,6 +24,22 @@ const TextOverImage = ({
         : null}
     </View>
   );
+};
+
+TextOverImage.defaultProps = {
+  title: '',
+  text: [],
+  textOverImageContainerStyle: {},
+  textOverImageTitleStyle: {},
+  textOverImageTextStyle: {},
+};
+
+TextOverImage.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.array,
+  textOverImageContainerStyle: PropTypes.object,
+  textOverImageTitleStyle: PropTypes.object,
+  textOverImageTextStyle: PropTypes.object,
 };
 
 export default TextOverImage;

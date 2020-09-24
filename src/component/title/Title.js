@@ -1,6 +1,7 @@
 import {Text, View} from 'react-native';
 import styles from './styles';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Title = ({
   title,
@@ -24,6 +25,24 @@ const Title = ({
       )}
     </View>
   );
+};
+
+Title.defaultProps = {
+  title: '',
+  caption: '',
+  titleTextStyle: {},
+  titleContainerStyle: {},
+  captionTextStyle: {},
+  captionContainerStyle: {},
+};
+
+Title.propTypes = {
+  title: PropTypes.string,
+  caption: PropTypes.string,
+  titleTextStyle: PropTypes.object,
+  titleContainerStyle: PropTypes.object,
+  captionTextStyle: PropTypes.object,
+  captionContainerStyle: PropTypes.object,
 };
 
 export default Title;

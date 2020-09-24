@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const Indicator = ({
   dataSource,
@@ -49,6 +50,26 @@ const setIndicatorColor = (color) => {
   return {
     backgroundColor: color,
   };
+};
+
+Indicator.defaultProps = {
+  dataSource: [],
+  active: 0,
+  indicatorColor: '',
+  selectedIndicatorColor: '',
+  indicatorContainerStyle: {},
+  indicatorStyle: {},
+  indicatorSelectedStyle: {},
+};
+
+Indicator.propTypes = {
+  dataSource: PropTypes.array,
+  active: PropTypes.number,
+  indicatorColor: PropTypes.string,
+  selectedIndicatorColor: PropTypes.string,
+  indicatorContainerStyle: PropTypes.object,
+  indicatorStyle: PropTypes.object,
+  indicatorSelectedStyle: PropTypes.object,
 };
 
 export default Indicator;

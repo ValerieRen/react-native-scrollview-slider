@@ -29,7 +29,6 @@ const dataSource = [
   },
   {
     title: 'Title 5',
-    caption: 'Caption 5',
     imgUrl: 'http://placeimg.com/640/480/any',
   },
 ];
