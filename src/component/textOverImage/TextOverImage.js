@@ -1,14 +1,22 @@
+import React from 'react';
 import {Text, View} from 'react-native';
 import styles from './styles';
-import React from 'react';
 
-const TextOverImage = ({title, text}) => {
+const TextOverImage = ({
+  title,
+  text,
+  textOverImageContainerStyle,
+  textOverImageTitleStyle,
+  textOverImageTextStyle,
+}) => {
   return (
-    <View style={styles.layout}>
-      {title ? <Text style={styles.textTitle}>{title}</Text> : null}
+    <View style={[styles.layout, textOverImageContainerStyle]}>
+      {title ? (
+        <Text style={[styles.textTitle, textOverImageTitleStyle]}>{title}</Text>
+      ) : null}
       {text instanceof Array && text.length > 0
         ? text.map((t, index) => (
-            <Text key={index} style={styles.text}>
+            <Text key={index} style={[styles.text, textOverImageTextStyle]}>
               {t}
             </Text>
           ))

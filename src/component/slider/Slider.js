@@ -6,7 +6,24 @@ import Title from '../title/Title';
 import Indicator from '../indicator/Indicator';
 const {width, height} = Dimensions.get('window');
 
-const Slider = ({dataSource, imgWidth, imgHeight}) => {
+const Slider = ({
+  dataSource,
+  imgWidth,
+  imgHeight,
+  indicatorColor,
+  selectedIndicatorColor,
+  indicatorContainerStyle,
+  indicatorStyle,
+  indicatorSelectedStyle,
+  textOverImageContainerStyle,
+  textOverImageTitleStyle,
+  textOverImageTextStyle,
+  titleTextStyle,
+  titleContainerStyle,
+  captionTextStyle,
+  captionContainerStyle,
+  imgContainerStyle,
+}) => {
   const scrollRef = useRef();
   const [active, setActive] = useState(0);
 
@@ -25,7 +42,7 @@ const Slider = ({dataSource, imgWidth, imgHeight}) => {
   };
 
   return (
-    <View style={[sizeProps, styles.imgContainer]}>
+    <View style={[sizeProps, styles.imgContainer, imgContainerStyle]}>
       <ScrollView
         ref={scrollRef}
         pagingEnabled
@@ -36,7 +53,14 @@ const Slider = ({dataSource, imgWidth, imgHeight}) => {
         style={sizeProps}>
         {dataSource.map((source, index) => (
           <View key={index}>
-            <Title title={source.title} caption={source.caption} />
+            <Title
+              title={source.title}
+              caption={source.caption}
+              titleTextStyle={titleTextStyle}
+              titleContainerStyle={titleContainerStyle}
+              captionTextStyle={captionTextStyle}
+              captionContainerStyle={captionContainerStyle}
+            />
             <Image
               style={[sizeProps, setImageStyle(sizeProps.height)]}
               source={{uri: source.imgUrl}}
@@ -44,12 +68,23 @@ const Slider = ({dataSource, imgWidth, imgHeight}) => {
             <TextOverImage
               title={source.titleOverImg}
               text={source.textListOverImg}
+              textOverImageContainerStyle={textOverImageContainerStyle}
+              textOverImageTitleStyle={textOverImageTitleStyle}
+              textOverImageTextStyle={textOverImageTextStyle}
             />
           </View>
         ))}
       </ScrollView>
       {/* SECTION INDICATOR */}
-      <Indicator dataSource={dataSource} active={active} />
+      <Indicator
+        dataSource={dataSource}
+        active={active}
+        indicatorColor={indicatorColor}
+        selectedIndicatorColor={selectedIndicatorColor}
+        indicatorContainerStyle={indicatorContainerStyle}
+        indicatorStyle={indicatorStyle}
+        indicatorSelectedStyle={indicatorSelectedStyle}
+      />
       {/* SECTION INDICATOR */}
     </View>
   );

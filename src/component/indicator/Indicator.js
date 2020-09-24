@@ -2,9 +2,17 @@ import React from 'react';
 import {View} from 'react-native';
 import styles from './styles';
 
-const Indicator = ({dataSource, active}) => {
+const Indicator = ({
+  dataSource,
+  active,
+  indicatorColor,
+  selectedIndicatorColor,
+  indicatorContainerStyle,
+  indicatorStyle,
+  indicatorSelectedStyle,
+}) => {
   return (
-    <View style={styles.indicatorContainer}>
+    <View style={[styles.indicatorContainer, indicatorContainerStyle]}>
       {dataSource.map((_, index) => {
         return (
           <View
@@ -12,12 +20,14 @@ const Indicator = ({dataSource, active}) => {
             style={[
               [
                 styles.indicator,
+                indicatorStyle,
                 setIndicatorSize(16),
-                setIndicatorColor('gray'),
+                setIndicatorColor(indicatorColor || 'gray'),
               ],
               active === index && [
                 styles.indicatorSelected,
-                setIndicatorColor('blue'),
+                indicatorSelectedStyle,
+                setIndicatorColor(selectedIndicatorColor || 'blue'),
               ],
             ]}
           />
