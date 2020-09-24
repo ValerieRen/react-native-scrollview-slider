@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, View, StyleSheet} from 'react-native';
 import Slider from './src/component/slider/Slider';
 
 const {width, height} = Dimensions.get('window');
@@ -36,7 +36,7 @@ const dataSource = [
 
 const App = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.container}>
       <Slider
         dataSource={dataSource}
         imgWidth={width * 0.8}
@@ -45,5 +45,13 @@ const App = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default App;
