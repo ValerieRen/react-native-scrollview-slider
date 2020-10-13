@@ -29,7 +29,7 @@ const Slider = ({
   titleContainerStyle,
   captionTextStyle,
   captionContainerStyle,
-  imgContainerStyle,
+  containerStyle,
   onPress,
   clickable,
 }) => {
@@ -51,7 +51,7 @@ const Slider = ({
   };
 
   return (
-    <View style={[sizeProps, styles.imgContainer, imgContainerStyle]}>
+    <View style={[sizeProps, styles.container, containerStyle]}>
       <ScrollView
         ref={scrollRef}
         pagingEnabled
@@ -156,7 +156,7 @@ Slider.defaultProps = {
   titleContainerStyle: {},
   captionTextStyle: {},
   captionContainerStyle: {},
-  imgContainerStyle: {},
+  containerStyle: {},
   clickable: false,
 };
 
@@ -184,7 +184,7 @@ Slider.propTypes = {
   titleContainerStyle: PropTypes.object,
   captionTextStyle: PropTypes.object,
   captionContainerStyle: PropTypes.object,
-  imgContainerStyle: PropTypes.object,
+  containerStyle: PropTypes.object,
   onPress: PropTypes.func,
   clickable: PropTypes.bool,
 };
