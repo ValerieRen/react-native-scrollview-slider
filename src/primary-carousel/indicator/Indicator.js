@@ -13,7 +13,7 @@ const Indicator = ({
   indicatorSelectedStyle,
 }) => {
   return (
-    <View style={[styles.indicatorContainer, indicatorContainerStyle]}>
+    <View style={{...styles.indicatorContainer, ...indicatorContainerStyle}}>
       {dataSource.map((_, index) => {
         return (
           <View

@@ -1,8 +1,15 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 export default StyleSheet.create({
   indicatorContainer: {
-    bottom: -20,
+    ...Platform.select({
+      ios: {
+        bottom: 30,
+      },
+      android: {
+        bottom: -20,
+      },
+    }),
     position: 'absolute',
     flexDirection: 'row',
     alignSelf: 'center',

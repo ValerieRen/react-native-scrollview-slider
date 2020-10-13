@@ -1,5 +1,11 @@
 import React, {useRef, useState} from 'react';
-import {Dimensions, Image, ScrollView, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import styles from './styles';
 import TextOverImage from '../textOverImage/TextOverImage';
 import Title from '../title/Title';
@@ -24,6 +30,8 @@ const Slider = ({
   captionTextStyle,
   captionContainerStyle,
   imgContainerStyle,
+  onPress,
+  clickable,
 }) => {
   const scrollRef = useRef();
   const [active, setActive] = useState(0);
@@ -63,17 +71,25 @@ const Slider = ({
                 captionTextStyle={captionTextStyle}
                 captionContainerStyle={captionContainerStyle}
               />
-              <Image
-                style={[sizeProps, setImageStyle(sizeProps.height)]}
-                source={{uri: source.imgUrl}}
-              />
-              <TextOverImage
-                title={source.titleOverImg}
-                text={source.textListOverImg}
-                textOverImageContainerStyle={textOverImageContainerStyle}
-                textOverImageTitleStyle={textOverImageTitleStyle}
-                textOverImageTextStyle={textOverImageTextStyle}
-              />
+              {clickable ? (
+                <TouchableOpacity onPress={onPress}>
+                  <ClickableSlide
+                    sizeProps={sizeProps}
+                    source={source}
+                    textOverImageContainerStyle={textOverImageContainerStyle}
+                    textOverImageTextStyle={textOverImageTextStyle}
+                    textOverImageTitleStyle={textOverImageTitleStyle}
+                  />
+                </TouchableOpacity>
+              ) : (
+                <ClickableSlide
+                  sizeProps={sizeProps}
+                  source={source}
+                  textOverImageContainerStyle={textOverImageContainerStyle}
+                  textOverImageTextStyle={textOverImageTextStyle}
+                  textOverImageTitleStyle={textOverImageTitleStyle}
+                />
+              )}
             </View>
           ))}
       </ScrollView>
@@ -89,6 +105,30 @@ const Slider = ({
       />
       {/* SECTION INDICATOR */}
     </View>
+  );
+};
+
+const ClickableSlide = ({
+  sizeProps,
+  source,
+  textOverImageContainerStyle,
+  textOverImageTitleStyle,
+  textOverImageTextStyle,
+}) => {
+  return (
+    <>
+      <Image
+        style={{...sizeProps, ...setImageStyle(sizeProps.height)}}
+        source={{uri: source.imgUrl}}
+      />
+      <TextOverImage
+        title={source.titleOverImg}
+        text={source.textListOverImg}
+        textOverImageContainerStyle={textOverImageContainerStyle}
+        textOverImageTitleStyle={textOverImageTitleStyle}
+        textOverImageTextStyle={textOverImageTextStyle}
+      />
+    </>
   );
 };
 
@@ -117,6 +157,7 @@ Slider.defaultProps = {
   captionTextStyle: {},
   captionContainerStyle: {},
   imgContainerStyle: {},
+  clickable: false,
 };
 
 Slider.propTypes = {
@@ -144,6 +185,8 @@ Slider.propTypes = {
   captionTextStyle: PropTypes.object,
   captionContainerStyle: PropTypes.object,
   imgContainerStyle: PropTypes.object,
+  onPress: PropTypes.func,
+  clickable: PropTypes.bool,
 };
 
 export default Slider;

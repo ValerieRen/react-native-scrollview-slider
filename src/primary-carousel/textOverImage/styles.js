@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   layout: {
@@ -10,6 +10,11 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexDirection: 'column',
+    ...Platform.select({
+      ios: {
+        bottom: 150,
+      },
+    }),
   },
   textTitle: {
     fontWeight: 'bold',

@@ -12,15 +12,15 @@ const Title = ({
   captionContainerStyle,
 }) => {
   return (
-    <View style={[styles.titleContainer, titleContainerStyle]}>
+    <View style={styles.titleContainer}>
       {title === undefined ? null : (
-        <View style={[styles.title, titleTextStyle]}>
-          <Text>{title}</Text>
+        <View style={{...styles.title, ...titleContainerStyle}}>
+          <Text style={{...styles.titleText, ...titleTextStyle}}>{title}</Text>
         </View>
       )}
       {caption === undefined ? null : (
-        <View style={[styles.caption, captionContainerStyle]}>
-          <Text style={[styles.captionText, captionTextStyle]}>{caption}</Text>
+        <View style={{...styles.caption, ...captionContainerStyle}}>
+          <Text style={{...styles.captionText, ...captionTextStyle}}>{caption}</Text>
         </View>
       )}
     </View>

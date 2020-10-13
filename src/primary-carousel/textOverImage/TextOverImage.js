@@ -11,13 +11,17 @@ const TextOverImage = ({
   textOverImageTextStyle,
 }) => {
   return (
-    <View style={[styles.layout, textOverImageContainerStyle]}>
+    <View style={{...styles.layout, ...textOverImageContainerStyle}}>
       {title ? (
-        <Text style={[styles.textTitle, textOverImageTitleStyle]}>{title}</Text>
+        <Text style={{...styles.textTitle, ...textOverImageTitleStyle}}>
+          {title}
+        </Text>
       ) : null}
       {text instanceof Array && text.length > 0
         ? text.map((t, index) => (
-            <Text key={index} style={[styles.text, textOverImageTextStyle]}>
+            <Text
+              key={index}
+              style={{...styles.text, ...textOverImageTextStyle}}>
               {t}
             </Text>
           ))

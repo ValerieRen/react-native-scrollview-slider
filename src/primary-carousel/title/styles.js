@@ -11,6 +11,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  titleText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
   caption: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -18,5 +22,6 @@ export default StyleSheet.create({
   },
   captionText: {
     paddingVertical: 10,
+    fontSize: 16,
   },
 });
